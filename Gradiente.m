@@ -14,8 +14,8 @@ for k=1:5
 
     %Pasar a escala de grises con la funcion
     img=rgb2gray(img);
-    figure
-    subplot(6,1,1)
+    figure(k)
+    subplot(3,1,1)
     imshow(img)
     title('Original')
     clear Gmag;
@@ -24,9 +24,16 @@ for k=1:5
     for i=1:5
         [Gmag(:,:,i) Gdir(:,:,i)]=imgradient(img,string(met(i)));
         %Metodos aplicados a la imagen en una sola figura
-        subplot(6,1,i+1)
-        imshowpair(Gmag(:,:,i), Gdir(:,:,i),"montage")
-        title('Gradiente de Magnitud (L)   Gradiente de Direccion (R)')
+        if i<=2
+            subplot(3,1,i+1)
+            imshowpair(Gmag(:,:,i), Gdir(:,:,i),"montage")
+            title('Gradiente de Magnitud (L)   Gradiente de Direccion (R)')
+        else
+            figure(k+5)
+            subplot(3,1,i-2)
+            imshowpair(Gmag(:,:,i), Gdir(:,:,i),"montage")
+            title('Gradiente de Magnitud (L)   Gradiente de Direccion (R)')
+        end
     end
 end
 
