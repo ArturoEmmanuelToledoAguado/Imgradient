@@ -5,8 +5,6 @@ close all;
 %Extraccion de las imagenes
 ruta={'IMG/1.jpg', 'IMG/2.jpg', 'IMG/3.jpg', 'IMG/4.jpg', 'IMG/5.jpg'};
 
-%Metodos
-met = {'sobel','prewitt','central','intermediate','roberts'};
 
 for k=1:5
     %Abrir la imagen
@@ -20,47 +18,25 @@ for k=1:5
     title('Original')
     clear Gmag;
     clear Gdir;
-    %Uso de imgradient
-    for i=1:5
-        [Gmag(:,:,i) Gdir(:,:,i)]=imgradient(img,string(met(i)));
-        %Metodos aplicados a la imagen en una sola figura
-        if i<2
-            subplot(2,1,i+1)
-            imshowpair(Gmag(:,:,i), Gdir(:,:,i),"montage")
-            title({'Gradiente de Magnitud (L)   Gradiente de Direccion (R) ';string(met(i))})
-        elseif i>=2 && i<=3
-            figure(k+5)
-            subplot(2,1,i-1)
-            imshowpair(Gmag(:,:,i), Gdir(:,:,i),"montage")
-            title({'Gradiente de Magnitud (L)   Gradiente de Direccion (R) ';string(met(i))})
-        else
-            figure(k+10)
-            subplot(2,1,i-3)
-            imshowpair(Gmag(:,:,i), Gdir(:,:,i),"montage")
-            title({'Gradiente de Magnitud (L)   Gradiente de Direccion (R) ';string(met(i))})
-        end
-    end
+    
+    %Uso de imgradient, obtiene el gradiente de magnitud y direccion de una
+    %imagen 2D
+    [Gmag, Gdir]=imgradient(img);
+    subplot(2,1,2)
+    imshowpair(Gmag,Gdir,"montage");
+    title({'Gradiente de Magnitud (L)   Gradiente de Direccion (R)';'usando imgradient'});
+    
+    %Uso de imgradientxy, sirve para obtener los gradientes direccionales 
+    %de una imagenn 2D
+    figure(k+5)
+    subplot(2,1,1)
+    imshow(img)
+    title('Original')
+    clear Gx;
+    clear Gy;
+    [Gx, Gy]=imgradientxy(img);
+    subplot(2,1,2)
+    imshowpair(Gx,Gy,"montage");
+    title({'Gradiente de Direccion x (Gx)   Gradiente de Direccion y (Gy)';'usando imgradientxy'});
 end
 
-% %Pasamos a escala de grises con la función
-% img=rgb2gray(img);
-% img2=rgb2gray(img2);
-% 
-% [Gmag Gdir]=imgradient(img);
-% [Gmag2 Gdir2]=imgradient(img2);
-% 
-% figure
-% subplot(2,1,1)
-% imshow(img)
-% title('Original')
-% subplot(2,1,2)
-% imshowpair(Gmag,Gdir,"montage")
-% title('Gradiente de Magnitud (L)   Gradiente de Direccion (R)')
-% 
-% figure
-% subplot(2,1,1)
-% imshow(img2)
-% title('Original')
-% subplot(2,1,2)
-% imshowpair(Gmag2,Gdir2,"montage")
-% title('Gradiente de Magnitud (L)   Gradiente de Direccion (R)')
