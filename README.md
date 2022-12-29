@@ -49,19 +49,19 @@ En estos filtros también se realiza una operación de convolución entre la ima
 
 Estas máscaras son llamadas operadores, donde matemáticamente, el operador utiliza dos kernels de 3x3 elementos para aplicar una convolución a la imagen y así calcular las aproximaciones de las derivadas. Un kernel para los cambios horizontales y otro para los verticales.
 
-$G_x=\begin{pmatrix}
+$$G_x=\begin{pmatrix}
 -1 & 0 & +1\\
 -2 & 0 & +2\\
 -1 & 0 & +1
-\end{pmatrix} * A$ 
+\end{pmatrix} * A$$
 
 y
 
-$G_y=\begin{pmatrix}
+$$G_y=\begin{pmatrix}
 -1 & -2 & -1\\
 0 & 0 & 0\\
 +1 & +2 & +1
-\end{pmatrix}*A$
+\end{pmatrix}*A$$
 
 Donde $A$ es la imagen original.
 
