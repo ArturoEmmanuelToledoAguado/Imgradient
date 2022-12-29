@@ -53,7 +53,7 @@ $$G_x=\begin{bmatrix}
 -1 & 0 & +1\\
 -2 & 0 & +2\\
 -1 & 0 & +1
-\end{bmatrix} * A \hspace{.5cm} y \hspace{.5cm} G_y=\begin{bmatrix}
+\end{bmatrix} * A \hspace{5px} y \hspace{5px} G_y=\begin{bmatrix}
 -1 & -2 & -1\\
 0 & 0 & 0\\
 +1 & +2 & +1
